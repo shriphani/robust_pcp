@@ -3,23 +3,24 @@ Animate supplied npy files
 '''
 import argparse
 import numpy as np
+import time
 import Tkinter
 from PIL import Image, ImageTk
 
 def animate(matrices, w, h):
 	mats = [np.load(x) for x in matrices]
 
-	tk_win = Tkinter.Tk()
+	tk_win = Tkinter.Toplevel()
 	tk_win.title('Escalator')
 	canvas = Tkinter.Canvas(tk_win, width=7*w, height=7*h)
 	canvas.pack()
-
+	tk_ims = [None for _ in mats]
 	for i, row in enumerate(mats[0]):
 		ims = [Image.new('L', (w, h)) for _ in mats]
 		for j, im in enumerate(ims):
-			im.putdata(map(float, list(row)))
-			tk_ims = ImageTk.PhotoImage(im)
-			canvas.create_image(j * w, h, image = im)
+			im.putdata(map(float, list(mats[j][i])))
+			tk_ims[j] = ImageTk.PhotoImage(im)
+			canvas.create_image((j * w) + 200, h, image = tk_ims[j])
 			canvas.update()
 
 
