@@ -28,6 +28,16 @@ if __name__ == '__main__':
 	parser = argparse.ArgumentParser()
 
 	parser.add_argument(
+		'width',
+		type = int,
+		help = 'frame width'
+	)
+	parser.add_argument(
+		'height',
+		type = int,
+		help = 'frame width'
+	)
+	parser.add_argument(
 		'--npy-files',
 		dest = 'npy_files',
 		nargs = '+',
@@ -36,4 +46,4 @@ if __name__ == '__main__':
 
 	parsed = parser.parse_args()
 
-	animate(parsed.npy_files, 160, 130)
+	animate(parsed.npy_files, parsed.width, parsed.height)
