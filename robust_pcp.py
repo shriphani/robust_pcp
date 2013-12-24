@@ -62,7 +62,7 @@ def pcp(X):
     num_iters = 0
     total_svd = 0
     stopCriterion = 1
-    sv = 10
+    sv = 1
 
     while True:
         num_iters += 1
